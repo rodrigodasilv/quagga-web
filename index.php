@@ -23,11 +23,11 @@
             <div class="col-6 text-center col-12-sm">
                 <img class="img-responsive" src="./assets/imgs/classroom.jpg" alt="classroom">
             </div>
-            <div class="col-6 text-center col-12-sm">
+            <div class="col-6 col-12-sm">
                 <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
+                        <h5 class="mb-0 text-center">
                             <button class="color-material-blue btn btn-link" data-toggle="collapse" style="text-decoration:none" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             Aluno
                             </button>
@@ -44,7 +44,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" id="nomeAluno" name="nomeAluno" placeholder="Felipe">
+                                    <input type="text" class="form-control" id="nomeAluno" name="nomeAluno" placeholder="Digite seu nome">
+                                    <small class="form-text text-muted">Ou deixe em branco para conversar anonimamente</small>
                                 </div>
                                 <button type="submit" class="btn btn-primary bg-material-blue mt-2">Acessar</button>
                             </form>
@@ -53,7 +54,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0">
+                        <h5 class="mb-0 text-center">
                             <button class="btn btn-link collapsed color-material-blue" style="text-decoration:none" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             Professor
                             </button>
@@ -65,7 +66,7 @@
                                 <div class="form-group">
                                     <input type="hidden" name="tipo" value="prof">
                                     <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" id="nomeProf" name="nomeProf" placeholder="Felipe">
+                                    <input type="text" class="form-control" id="nomeProf" name="nomeProf" placeholder="Digite seu nome">
                                 </div>
                                 <button type="submit" class="btn btn-primary bg-material-blue mt-2">Acessar</button>
                             </form>

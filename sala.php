@@ -18,6 +18,7 @@
 <body class="d-flex flex-column min-vh-100">
     <nav class="bg-material-blue navbar navbar-dark fixed-top">
         <span class="navbar-brand ms-3 h1 poppins"><a href="./index.php">Quagga</a></span>
+        <span class="ms-3 h5 poppins" style="padding-right:1rem; font-size:1rem"><a href="./index.php">Voltar</a></span>
     </nav>
     <div class="spacer">
         &nbsp;
@@ -43,7 +44,7 @@
                         }else{
                             $sala = $_GET['sala'];
                             echo '<div class="message-blue">
-                            <p class="message-content"> ADM: O ID da sala atual é ' . $sala  . '</p>
+                            <p class="message-content"> Quagga: O ID da sala atual é ' . $sala  . '</p>
                             </div>
                             <br>';
                             $query = "INSERT INTO usuarios(usuarios_nick,usuarios_prof) VALUES ('" . $_GET['nomeProf'] . "',1)";
@@ -59,7 +60,19 @@
                             $stm_sql->execute();
                             $usuario_id=$banco->lastInsertId();
                         }
-                        $sala = $_GET['sala'];
+                        if (isset($_GET['sala'])){
+                            $query = "select 1 from salas s where s.salas_id = " . $_GET['sala'];
+                            $stm_sql=$banco->prepare($query);
+                            $stm_sql->execute();
+                            $salaExist = $stm_sql->fetch(PDO::FETCH_ASSOC);
+                            if($salaExist===false){
+                                echo '<div class="message-blue">
+                                        <p class="message-content"> Quagga: Algo de errado aconteceu, verifique com o professor o ID da sala!</p>
+                                      </div>
+                                      <br>';
+                            }
+                            $sala = $_GET['sala'];
+                        }
                     }
                 }
 
@@ -83,7 +96,7 @@
                         &nbsp;
                       </div>';
             ?>
-            <form action="redirectSala.php" method="post" class="mt-auto">
+            <form action="redirectSala.php" method="post" class="mt-auto <?php echo ($salaExist === false) ? 'd-none' : ''; ?>">
                 <div class="row mt-auto fixed-bottom" style="padding-bottom: 1rem !important; padding-left:2rem">
                     <div class="col-11 d-flex">
                         <input type="hidden" name="url_to_redirect" value="<?php
@@ -98,7 +111,7 @@
                         <input type="text" class="form-control" id="mensagem" name="mensagem" aria-describedby="Mensagem" placeholder="Escreva aqui!">
                     </div>
                     <div class="col-1">
-                        <button class="btn bg-material-blue"><btn class="material-symbols-outlined">send</btn></button>
+                        <button class="btn bg-material-blue" style="color: white"><btn class="material-symbols-outlined">send</btn></button>
                     </div>
                 </div>
                 

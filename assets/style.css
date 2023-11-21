@@ -86,3 +86,7 @@ span{
 .color-material-blue{
     color: #283593 !important;
 }
+
+.text-left-c{
+    text-align: left !important;
+}
