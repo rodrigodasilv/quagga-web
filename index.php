@@ -16,24 +16,26 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
     <nav class="bg-material-blue navbar navbar-dark">
-        <span class="navbar-brand ms-3 h1 poppins">Quagga</span>
+        <span class="navbar-brand ms-3 h1 poppins"><a href="./index.php">Quagga</a></span>
     </nav>
     <div class="container">
-        <div class="row align-items-center mx-auto my-auto">
-            <div class="col-6 text-center">
+        <div class="row align-items-center mx-auto my-auto" style="padding-top:3rem">
+            <div class="col-6 text-center col-12-sm">
                 <img class="img-responsive" src="./assets/imgs/classroom.jpg" alt="classroom">
             </div>
-            <div class="col-6 text-center">
-                <button class="bg-material-blue btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseProf" aria-expanded="false" aria-controls="collapseProf">
-                    Professor
-                </button>
-                <button class="bg-material-blue btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAluno" aria-expanded="true" aria-controls="collapseAluno">
-                    Aluno
-                </button>
-                
-                <div class="accordion-group">
-                    <div class="collapse mt-2" id="collapseAluno">
-                        <div class="card card-body">
+            <div class="col-6 text-center col-12-sm">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="color-material-blue btn btn-link" data-toggle="collapse" style="text-decoration:none" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Aluno
+                            </button>
+                        </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
                             <form action="sala.php" method="get" onsubmit="return validateForm()">
                                 <div class="form-group">
                                     <label for="ID">ID sala</label>
@@ -47,9 +49,17 @@
                                 <button type="submit" class="btn btn-primary bg-material-blue mt-2">Acessar</button>
                             </form>
                         </div>
+                        </div>
                     </div>
-
-                    <div class="collapse mt-2" id="collapseProf">
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed color-material-blue" style="text-decoration:none" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Professor
+                            </button>
+                        </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                         <div class="card card-body">
                             <form action="sala.php" method="get" onsubmit="return validateForm()">
                                 <div class="form-group">
@@ -60,9 +70,10 @@
                                 <button type="submit" class="btn btn-primary bg-material-blue mt-2">Acessar</button>
                             </form>
                         </div>
+                        </div>
                     </div>
-                </div>
             </div>
+        </div>
         </div>
     </div>
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-auto border-top">

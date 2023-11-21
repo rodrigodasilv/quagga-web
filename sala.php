@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quagga - Chat online de estudantes</title>
     <link rel="stylesheet" href="assets/style.css">
+    <meta http-equiv="refresh" content="10" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -15,9 +16,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <nav class="bg-material-blue navbar navbar-dark">
-        <span class="navbar-brand ms-3 h1 poppins">Quagga</span>
+    <nav class="bg-material-blue navbar navbar-dark fixed-top">
+        <span class="navbar-brand ms-3 h1 poppins"><a href="./index.php">Quagga</a></span>
     </nav>
+    <div class="spacer">
+        &nbsp;
+    </div>
     <div class="container">
         <div class="row align-items-center mx-auto my-auto">
             <div class="col-12 mt-2">
@@ -40,7 +44,8 @@
                             $sala = $_GET['sala'];
                             echo '<div class="message-blue">
                             <p class="message-content"> ADM: O ID da sala atual é ' . $sala  . '</p>
-                            </div>';
+                            </div>
+                            <br>';
                             $query = "INSERT INTO usuarios(usuarios_nick,usuarios_prof) VALUES ('" . $_GET['nomeProf'] . "',1)";
                             $stm_sql = $banco->prepare($query);
                             $stm_sql->execute();
@@ -58,25 +63,29 @@
                     }
                 }
 
-                $query = "select m.mensagens_texto as msg, 'Anônimo' as usu from mensagens m join salas s on s.salas_id = m.salas_salas_id 
-                          where m.usuarios_id is null 
-                          and s.salas_id = " . $sala . 
-                          " union
-                          select m.mensagens_texto as msg, u.usuarios_nick as usu from mensagens m join salas s on s.salas_id = m.salas_salas_id join usuarios u on u.usuarios_id = m.mensagens_id
+                $query = "select m.mensagens_texto as msg, u.usuarios_nick as usu from mensagens m join salas s on s.salas_id = m.salas_salas_id join usuarios u on u.usuarios_id = m.usuarios_id
                           and s.salas_id = " . $sala;
                 $stm_sql=$banco->prepare($query);
                 $stm_sql->execute();
                 $mensagens = $stm_sql->fetchAll(PDO::FETCH_ASSOC);
                 foreach($mensagens as $mensagem){
+                    if (empty($mensagem['usu'])){
+                        $usuario_msg = 'Anônimo';
+                    }else{
+                        $usuario_msg = $mensagem['usu'];
+                    }
                     echo '<div class="message-blue">
-                          <p class="message-content">' . $mensagem['usu'] . ': ' . $mensagem['msg']  . '</p>
+                          <p class="message-content">' . $usuario_msg . ': ' . $mensagem['msg']  . '</p>
                           </div>
                           <br>';
                 }
+                echo '<div class="spacer">
+                        &nbsp;
+                      </div>';
             ?>
-            <form action="redirectSala.php" method="post">
-                <div class="row">
-                    <div class="col-11">
+            <form action="redirectSala.php" method="post" class="mt-auto">
+                <div class="row mt-auto fixed-bottom" style="padding-bottom: 1rem !important; padding-left:2rem">
+                    <div class="col-11 d-flex">
                         <input type="hidden" name="url_to_redirect" value="<?php
                             $newURL = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                             if (!isset($_GET['sala'])){
@@ -97,10 +106,5 @@
             </div>
         </div>
     </div>
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-auto border-top">
-        <div class="d-flex align-items-center">
-            <span class="ms-3 mb-0 text-muted">© 2024 Quagga</span>
-        </div>
-    </footer>
 </body>
 </html>
