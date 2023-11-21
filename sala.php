@@ -104,7 +104,7 @@
             ?>
             <form action="redirectSala.php" method="post" class="mt-auto <?php echo ($salaExist === false) ? 'd-none' : ''; ?>">
                 <div class="row mt-auto fixed-bottom" style="padding-bottom: 1rem !important; padding-left:2rem">
-                    <div class="col-11 d-flex">
+                    <div class="col-8 col-sm-11 col-md-11 col-lg-11 col-xl-11 d-flex">
                         <input type="hidden" name="url_to_redirect" value="<?php
                             $newURL = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                             if (!isset($_GET['sala'])){
@@ -116,8 +116,8 @@
                         <input type="hidden" name="usuario_id" value="<?php echo $usuario_id?>">
                         <input type="text" class="form-control" id="mensagem" name="mensagem" aria-describedby="Mensagem" placeholder="Escreva aqui!">
                     </div>
-                    <div class="col-1">
-                        <button class="btn bg-material-blue" style="color: white"><btn class="material-symbols-outlined">send</btn></button>
+                    <div class="col-4 col-sm-1 col-md-1 col-lg-1 col-xl-1">
+                        <button class="btn bg-material-blue text-center" style="color: white; padding-bottom: 0 !important;"><btn class="material-symbols-outlined">send</btn></button>
                     </div>
                 </div>
                 

@@ -20,10 +20,10 @@
     </nav>
     <div class="container">
         <div class="row align-items-center mx-auto my-auto" style="padding-top:3rem">
-            <div class="col-6 text-center col-12-sm">
-                <img class="img-responsive" src="./assets/imgs/classroom.jpg" alt="classroom">
+            <div class="col-12 text-center col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <img class="img-responsive img-fluid" src="./assets/imgs/classroom.jpg" alt="classroom">
             </div>
-            <div class="col-6 col-12-sm">
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
