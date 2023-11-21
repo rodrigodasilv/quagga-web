@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
+<script>
+    window.onload = () => {
+        //Faz scroll até a ultima mensagem
+        window.scrollTo(0, document.body.scrollHeight)
+      };
+</script>
 <body class="d-flex flex-column min-vh-100">
     <nav class="bg-material-blue navbar navbar-dark fixed-top">
         <span class="navbar-brand ms-3 h1 poppins"><a href="./index.php">Quagga</a></span>
