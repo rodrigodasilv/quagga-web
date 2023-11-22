@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
+
 <body class="d-flex flex-column min-vh-100">
     <nav class="bg-material-blue navbar navbar-dark">
         <span class="navbar-brand ms-3 h1 poppins"><a href="./index.php">Quagga</a></span>
@@ -27,54 +29,54 @@
                 <div id="accordion">
                     <div class="card">
                         <div class="card-header" id="headingOne">
-                        <h5 class="mb-0 text-center">
-                            <button class="color-material-blue btn btn-link" data-toggle="collapse" style="text-decoration:none" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Aluno
-                            </button>
-                        </h5>
+                            <h5 class="mb-0 text-center">
+                                <button class="color-material-blue btn btn-link" data-toggle="collapse" style="text-decoration:none" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Aluno
+                                </button>
+                            </h5>
                         </div>
 
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-                            <form action="sala.php" method="get" onsubmit="return validateForm()">
-                                <div class="form-group">
-                                    <label for="ID">ID sala</label>
-                                    <input type="hidden" name="tipo" value="aluno">
-                                    <input type="number" class="form-control" id="sala" name="sala" aria-describedby="ID da sala" placeholder="123456">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" id="nomeAluno" name="nomeAluno" placeholder="Digite seu nome">
-                                    <small class="form-text text-muted">Ou deixe em branco para conversar anonimamente</small>
-                                </div>
-                                <button type="submit" class="btn btn-primary bg-material-blue mt-2">Acessar</button>
-                            </form>
-                        </div>
+                            <div class="card-body">
+                                <form action="sala.php" method="get" onsubmit="return validateForm()">
+                                    <div class="form-group">
+                                        <label for="ID">PIN sala</label>
+                                        <input type="hidden" name="tipo" value="aluno">
+                                        <input type="name" class="form-control" id="sala" name="sala" aria-describedby="ID da sala" placeholder="123456" onkeypress="return isNumberKey(event)">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control" id="nomeAluno" name="nomeAluno" placeholder="Digite seu nome">
+                                        <small class="form-text text-muted">Ou deixe em branco para conversar anonimamente</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary bg-material-blue mt-2">Acessar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
                         <div class="card-header" id="headingTwo">
-                        <h5 class="mb-0 text-center">
-                            <button class="btn btn-link collapsed color-material-blue" style="text-decoration:none" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Professor
-                            </button>
-                        </h5>
+                            <h5 class="mb-0 text-center">
+                                <button class="btn btn-link collapsed color-material-blue" style="text-decoration:none" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Professor
+                                </button>
+                            </h5>
                         </div>
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                        <div class="card card-body">
-                            <form action="sala.php" method="get" onsubmit="return validateForm()">
-                                <div class="form-group">
-                                    <input type="hidden" name="tipo" value="prof">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" class="form-control" id="nomeProf" name="nomeProf" placeholder="Digite seu nome">
-                                </div>
-                                <button type="submit" class="btn btn-primary bg-material-blue mt-2">Acessar</button>
-                            </form>
-                        </div>
+                            <div class="card card-body">
+                                <form action="sala.php" method="get" onsubmit="return validateForm()">
+                                    <div class="form-group">
+                                        <input type="hidden" name="tipo" value="prof">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control" id="nomeProf" name="nomeProf" placeholder="Digite seu nome">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary bg-material-blue mt-2">Acessar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
         </div>
     </div>
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 mt-auto border-top">
@@ -82,5 +84,14 @@
             <span class="ms-3 mb-0 text-muted">© 2024 Quagga</span>
         </div>
     </footer>
+    <script>
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
+    </script>
 </body>
+
 </html>
